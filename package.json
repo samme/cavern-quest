@@ -1,0 +1,32 @@
+{
+  "name": "cavern-quest",
+  "version": "1.0.0",
+  "description": "A simple game demonstrating Phaser scenes",
+  "main": "dist/index.html",
+  "scripts": {
+    "build": "npm run clean && parcel build src/index.html --no-source-maps --public-url ./",
+    "start": "parcel serve src/index.html",
+    "clean": "rm dist/*",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "push": "npm run build && butler push dist samme/cavern-quest:browser",
+    "status": "butler status samme/cavern-quest"
+  },
+  "keywords": [
+    "phaser",
+    "phaser3"
+  ],
+  "author": "samme",
+  "license": "ISC",
+  "dependencies": {
+    "colors.css": "^3.0.0",
+    "phaser": "^3.16.2",
+    "phaser-plugin-scene-watcher": "^2.1.1"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10"
+  },
+  "alias": {
+    "phaser": "./node_modules/phaser/src/phaser-arcade-physics.js",
+    "phaser-plugin-scene-watcher": "./node_modules/phaser-plugin-scene-watcher/src"
+  }
+}
