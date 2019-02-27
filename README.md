@@ -1,11 +1,19 @@
-Phaser 3 Scenes Tutorial (Cavern Quest)
-========================
+Cavern Quest
+============
 
-```sh
-npm install -g parcel-bundler
+![Gameplay](./cover.png)
 
-npm run start # Auto-compile and run dev server
-npm run build # Compile for production
-```
+Demo for my Phaser scenes tutorial.
 
-See [Parcel: Getting Started](https://parceljs.org/getting_started.html) for more.
+Play on [itch.io][4] or the [code sandbox][3].
+
+This project uses
+
+  - [phaser-parcel][1]
+  - [phaser-plugin-scene-watcher][2]
+
+[1]: https://github.com/samme/phaser-parcel
+[2]: https://github.com/samme/phaser-plugin-scene-watcher
+[3]: https://codesandbox.io/s/github/samme/cavern-quest
+[4]: https://samme.itch.io/cavern-quest "Cavern Quest"
+
