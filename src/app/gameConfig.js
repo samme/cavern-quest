@@ -13,7 +13,7 @@ export default {
   pixelArt: true,
   audio: { noAudio: true },
   title: 'Phaser Scenes Tutorial 💰',
-  url: 'https://github.com/samme',
+  url: 'https://github.com/samme/cavern-quest',
   banner: { text: 'white', background: [ '#141B24', '#141B24', '#131419', '#131215', '#141012' ] },
   scene: [ bootScene, menuScene, playScene, endScene, uiScene ],
   plugins: {
