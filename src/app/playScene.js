@@ -93,7 +93,7 @@ export default {
     this.physics.add.overlap(crevasse, player, this.gameOver, null, this);
 
     this.time.addEvent({
-      delay: 6 * SECOND,
+      delay: 3 * SECOND,
       loop: true,
       callback: this.dropBomb,
       callbackScope: this
