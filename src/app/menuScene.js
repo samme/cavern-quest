@@ -20,9 +20,7 @@ export default {
       .setOrigin(0.5, 0);
 
     this.input.on('pointerdown', function () {
-      this.scene
-        .run('ui')
-        .switch('play');
+      this.scene.switch('play');
     }, this);
   }
 

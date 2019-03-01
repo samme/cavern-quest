@@ -63,7 +63,7 @@ export default {
       .on('keydown-Q', function () {
         this.scene
           .stop('play')
-          .switch('menu');
+          .run('menu');
       }, this)
       // End play
       .on('keydown-V', function () {

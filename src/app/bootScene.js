@@ -89,6 +89,7 @@ export default {
 
     this.scene
       .launch('menu')
+      .launch('ui')
       .remove();
   }
 
