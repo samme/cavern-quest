@@ -50,8 +50,8 @@ export default {
     var Between = Phaser.Math.Between;
 
     // The ledges
+    platforms.create(100 + Between(-50, 50), 256);
     platforms.create(600 + Between(-50, 50), 400);
-    platforms.create(50 + Between(-50, 50), 256);
     platforms.create(750 + Between(-50, 50), 224);
     platforms.create(1250 + Between(-50, 50), 320);
     platforms.create(300, 584);
