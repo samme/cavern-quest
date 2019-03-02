@@ -32,6 +32,8 @@ export default {
 
   init: function () {
     this.registry.set('score', 0);
+
+    console.log(this, Phaser.Math);
   },
 
   create: function () {
@@ -57,7 +59,7 @@ export default {
     platforms.create(300, 584);
     platforms.create(900, 584);
 
-    player = this.physics.add.sprite(600, 0, 'dude')
+    player = this.physics.add.sprite(100 * Between(2, 10), 0, 'dude')
       .setSize(16, 48)
       .setBounce(0.2)
       .setCollideWorldBounds(true);
