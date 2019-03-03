@@ -7,7 +7,7 @@
     "build": "npm run clean && parcel build src/index.html --no-source-maps --public-url ./",
     "start": "parcel serve src/index.html",
     "clean": "rm dist/*",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "eslint src",
     "push": "npm run build && butler push dist samme/cavern-quest:browser",
     "status": "butler status samme/cavern-quest"
   },
