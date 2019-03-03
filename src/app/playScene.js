@@ -32,8 +32,6 @@ export default {
 
   init: function () {
     this.registry.set('score', 0);
-
-    console.log(this, Phaser.Math);
   },
 
   create: function () {
