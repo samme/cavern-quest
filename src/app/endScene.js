@@ -1,5 +1,3 @@
-import colors from 'colors.css';
-
 export default {
 
   key: 'end',
@@ -14,7 +12,7 @@ export default {
 
     this.add.text(400, 300, 'Game Over\n\n← menu  ', {
       align: 'center',
-      fill: colors.white,
+      fill: 'white',
       fontFamily: 'sans-serif',
       fontSize: 48,
       fontWeight: 'bold'

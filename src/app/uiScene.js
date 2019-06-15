@@ -1,5 +1,3 @@
-import colors from 'colors.css';
-
 var highScoreText;
 var pauseText;
 var scoreText;
@@ -15,19 +13,19 @@ export default {
     scoreText = this.add.text(420, 0, '', {
       fontSize: 32,
       fontFamily: 'sans-serif',
-      fill: colors.white
+      fill: 'white'
     });
 
     highScoreText = this.add.text(620, 0, '', {
       fontSize: 32,
       fontFamily: 'sans-serif',
-      fill: colors.white
+      fill: 'white'
     });
 
     pauseText = this.add.text(400, 300, 'PAUSED', {
       fontSize: 48,
       fontFamily: 'sans-serif',
-      fill: colors.white
+      fill: 'white'
     })
       .setOrigin(0.5, 0.5)
       .setVisible(false);

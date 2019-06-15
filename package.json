@@ -18,7 +18,6 @@
   "author": "samme",
   "license": "ISC",
   "dependencies": {
-    "colors.css": "^3.0.0",
     "phaser": "~3.16.2",
     "phaser-plugin-scene-watcher": "^2.1.1"
   },
