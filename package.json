@@ -19,13 +19,12 @@
   "license": "ISC",
   "dependencies": {
     "phaser": "~3.16.2",
-    "phaser-plugin-scene-watcher": "^2.1.1"
+    "phaser-plugin-scene-watcher": "^3.1.4"
   },
   "devDependencies": {
     "cssnano": "^4.1.10"
   },
   "alias": {
-    "phaser": "./node_modules/phaser/src/phaser-arcade-physics.js",
-    "phaser-plugin-scene-watcher": "./node_modules/phaser-plugin-scene-watcher/src"
+    "phaser": "./node_modules/phaser/src/phaser-arcade-physics.js"
   }
 }
