@@ -65,9 +65,11 @@ export default {
           .stop('play')
           .run('menu');
       }, this)
-      // End play
-      .on('keydown-V', function () {
-        this.scene.get('play').gameOver();
+      // Zoom
+      .on('keydown-Z', function () {
+        var camera = this.scene.get('play').cameras.main;
+
+        camera.setZoom(camera.zoom === 2 ? 1 : 2);
       }, this);
   },
 
