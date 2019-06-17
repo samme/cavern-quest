@@ -40,35 +40,10 @@ export default {
       .on('shutdown', this.hidePauseText, this);
 
     this.input.keyboard
-      // Pause/Resume play
-      .on('keydown-SPACE', function () {
-        if (this.scene.isActive('play')) {
-          this.scene.pause('play');
-        } else if (this.scene.get('play').sys.isPaused()) {
-          this.scene.resume('play');
-        }
-      }, this)
-      // Restart play
-      .on('keydown-R', function () {
-        this.scene.launch('play');
-
-        // Don't sleep a scene that hasn't started!
-        if (this.scene.isActive('end')) {
-          this.scene.sleep('end');
-        }
-      }, this)
-      // Quit play
-      .on('keydown-Q', function () {
-        this.scene
-          .stop('play')
-          .run('menu');
-      }, this)
-      // Zoom
-      .on('keydown-Z', function () {
-        var camera = this.scene.get('play').cameras.main;
-
-        camera.setZoom(camera.zoom === 2 ? 1 : 2);
-      }, this);
+      .on('keydown-SPACE', this.togglePause, this)
+      .on('keydown-R', this.restartPlay, this)
+      .on('keydown-Q', this.quitPlay, this)
+      .on('keydown-Z', this.toggleZoom, this);
   },
 
   extend: {
@@ -89,8 +64,38 @@ export default {
       }
     },
 
+    quitPlay: function () {
+      this.scene
+        .stop('play')
+        .run('menu');
+    },
+
+    restartPlay: function () {
+      this.scene.launch('play');
+
+      // Don't sleep a scene that hasn't started!
+      if (this.scene.isActive('end')) {
+        this.scene.sleep('end');
+      }
+    },
+
     showPauseText: function () {
       pauseText.setVisible(true);
+    },
+
+    togglePause: function () {
+      if (this.scene.isActive('play')) {
+        this.scene.pause('play');
+      }
+      else if (this.scene.get('play').sys.isPaused()) {
+        this.scene.resume('play');
+      }
+    },
+
+    toggleZoom: function () {
+      var camera = this.scene.get('play').cameras.main;
+
+      camera.setZoom(camera.zoom === 2 ? 1 : 2);
     }
 
   }
