@@ -68,6 +68,11 @@ export default {
       this.scene
         .stop('play')
         .run('menu');
+      
+      // Don't sleep a scene that hasn't started!
+      if (this.scene.isActive('end')) {
+        this.scene.sleep('end');
+      }
     },
 
     restartPlay: function () {
