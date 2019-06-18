@@ -88,7 +88,9 @@ export default {
       frameRate: 10,
       repeat: -1
     });
+  },
 
+  update: function () {
     this.scene
       .launch('menu')
       .launch('ui')
@@ -96,3 +98,4 @@ export default {
   }
 
 };
+
