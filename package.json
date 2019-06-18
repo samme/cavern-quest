@@ -2,10 +2,10 @@
   "name": "cavern-quest",
   "version": "1.0.0",
   "description": "A simple game demonstrating Phaser scenes",
-  "main": "src/index.html",
+  "main": "index.html",
   "scripts": {
-    "build": "npm run clean && parcel build src/index.html --no-source-maps --public-url ./",
-    "start": "parcel serve src/index.html",
+    "build": "npm run clean && parcel build index.html --no-source-maps --public-url ./",
+    "start": "parcel serve index.html",
     "clean": "rm dist/*",
     "test": "eslint src",
     "push": "npm run build && butler push dist samme/cavern-quest:browser",
