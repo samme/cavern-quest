@@ -91,7 +91,7 @@ export default {
     togglePause: function () {
       if (this.scene.isActive('play')) {
         this.scene.pause('play');
-      } else if (this.scene.get('play').sys.isPaused()) {
+      } else if (this.scene.isPaused('play')) {
         this.scene.resume('play');
       }
     },
