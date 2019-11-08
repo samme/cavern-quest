@@ -18,8 +18,8 @@
   "author": "samme",
   "license": "ISC",
   "dependencies": {
-    "phaser": "~3.16.2",
-    "phaser-plugin-scene-watcher": "^3.1.4"
+    "phaser": "^3.20.1",
+    "phaser-plugin-scene-watcher": "^3.2.2"
   },
   "devDependencies": {
     "cssnano": "^4.1.10"
