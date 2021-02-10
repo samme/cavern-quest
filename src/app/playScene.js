@@ -1,11 +1,11 @@
 import Phaser from 'phaser';
 
 var bombs;
+var coins;
+var crevasse;
 var cursors;
 var platforms;
 var player;
-var coins;
-var crevasse;
 
 var SECOND = 1000;
 var TINT_RED = 0xff0000;
@@ -31,6 +31,7 @@ export default {
 
   init: function () {
     this.registry.set('score', 0);
+    this.events.once('shutdown', this.shutdown, this);
   },
 
   create: function () {
@@ -194,6 +195,15 @@ export default {
       coins.children.iterate(function (coin) {
         coin.enableBody(true, coin.x, 0, true, true);
       });
+    },
+
+    shutdown: function () {
+      bombs = null;
+      coins = null;
+      crevasse = null;
+      cursors = null;
+      platforms = null;
+      player = null;
     },
 
     undim: function () {
