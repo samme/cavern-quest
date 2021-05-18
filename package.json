@@ -7,7 +7,7 @@
     "build": "npm run clean && parcel build index.html --no-source-maps --public-url ./",
     "start": "parcel serve index.html",
     "clean": "rm -f dist/*",
-    "test": "eslint src",
+    "test": "npx eslint src",
     "push": "npm run build && butler push dist samme/cavern-quest:browser",
     "status": "butler status samme/cavern-quest"
   },
@@ -22,7 +22,9 @@
     "phaser-plugin-scene-watcher": "^5.0.1"
   },
   "devDependencies": {
-    "cssnano": "^5.0.2"
+    "cssnano": "^5.0.2",
+    "eslint": "^7.26.0",
+    "eslint-config-semistandard": "^15.0.1"
   },
   "alias": {
     "phaser": "./node_modules/phaser/src/phaser-arcade-physics.js"
