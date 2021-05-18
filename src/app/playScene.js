@@ -9,6 +9,7 @@ let player;
 
 const SECOND = 1000;
 const TINT_RED = 0xff0000;
+const { DESTROY, PAUSE, RESUME, SHUTDOWN } = Phaser.Scenes.Events;
 
 export default {
 
@@ -31,7 +32,11 @@ export default {
 
   init: function () {
     this.registry.set('score', 0);
-    this.events.once('shutdown', this.shutdown, this);
+    this.events
+      .on(PAUSE, this.dim, this)
+      .on(RESUME, this.undim, this)
+      .on(DESTROY, this.destroy, this)
+      .once(SHUTDOWN, this.shutdown, this);
   },
 
   create: function () {
@@ -47,7 +52,7 @@ export default {
       defaultKey: 'platform'
     });
 
-    let {Between} = Phaser.Math;
+    const {Between} = Phaser.Math;
 
     // The ledges
     platforms.create(100 + Between(-50, 50), 256);
@@ -58,7 +63,8 @@ export default {
     platforms.create(900, 584);
 
     player = this.physics.add.sprite(100 * Between(2, 10), 0, 'dude')
-      .setSize(16, 48)
+      .setSize(16, 32, false)
+      .setOffset(8, 16)
       .setBounce(0.2)
       .setCollideWorldBounds(true);
 
@@ -100,10 +106,6 @@ export default {
     });
 
     cursors = this.input.keyboard.createCursorKeys();
-
-    this.events
-      .on('pause', this.dim, this)
-      .on('resume', this.undim, this);
   },
 
   update: function () {
@@ -113,7 +115,7 @@ export default {
       return;
     }
 
-    let {blocked} = player.body;
+    const {blocked} = player.body;
 
     if (cursors.left.isDown && !blocked.left) {
       player.setVelocityX(-180);
@@ -134,7 +136,7 @@ export default {
   extend: {
 
     addBomb: function (x, y) {
-      let bomb = bombs.get(x, y, 'bomb');
+      const bomb = bombs.get(x, y, 'bomb');
 
       if (!bomb) {
         // At max.
@@ -148,6 +150,19 @@ export default {
       bomb.setMaxVelocity(600);
       bomb.setVelocity(Phaser.Utils.Array.GetRandom([-180, -90, 0, 90, 180]), 30);
       bomb.setAngularVelocity(360);
+    },
+
+    clear: function () {
+      bombs = null;
+      coins = null;
+      crevasse = null;
+      cursors = null;
+      platforms = null;
+      player = null;
+    },
+
+    destroy: function () {      
+      this.clear();
     },
 
     collectCoin: function (player, coin) {
@@ -198,12 +213,12 @@ export default {
     },
 
     shutdown: function () {
-      bombs = null;
-      coins = null;
-      crevasse = null;
-      cursors = null;
-      platforms = null;
-      player = null;
+      this.clear();
+
+      this.events
+        .off(PAUSE, this.dim, this)
+        .off(RESUME, this.undim, this)
+        .off(DESTROY, this.destroy, this);
     },
 
     undim: function () {
