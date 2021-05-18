@@ -1,6 +1,6 @@
-var highScoreText;
-var pauseText;
-var scoreText;
+let highScoreText;
+let pauseText;
+let scoreText;
 
 export default {
 
@@ -97,7 +97,7 @@ export default {
     },
 
     toggleZoom: function () {
-      var camera = this.scene.get('play').cameras.main;
+      let camera = this.scene.get('play').cameras.main;
 
       camera.setZoom(camera.zoom === 2 ? 1 : 2);
     }

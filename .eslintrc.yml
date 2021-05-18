@@ -1,8 +1,7 @@
 extends: 'eslint:recommended'
 env:
-  amd: true
-  browser: true
-  es6: true
+  browser: yes
+  es6: yes
 parserOptions:
   sourceType: module
 rules:
@@ -16,6 +15,10 @@ rules:
   linebreak-style:
     - error
     - unix
+  no-var:
+    - error
+  prefer-destructuring:
+    - error
   quotes:
     - error
     - single

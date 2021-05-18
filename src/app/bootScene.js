@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import animations from './animations';
+import assets from '../assets/*.png';
 
 export default {
 
@@ -7,7 +8,7 @@ export default {
 
   pack: {
     files: [
-      { key: 'logo', type: 'image', url: require('../assets/phaser.png') }
+      { key: 'logo', type: 'image', url: assets.phaser }
     ]
   },
 
@@ -18,14 +19,14 @@ export default {
       .set('highScore', 0)
       .set('score', 0);
 
-    var bg = this.add.image(400, 300, 'logo')
+    let bg = this.add.image(400, 300, 'logo')
       .setAlpha(0.4)
       .setBlendMode(Phaser.BlendModes.LUMINOSITY);
 
-    var logo = this.add.image(bg.x, bg.y, 'logo')
+    let logo = this.add.image(bg.x, bg.y, 'logo')
       .setVisible(false);
 
-    var rect = new Phaser.Geom.Rectangle(0, 0, logo.width, logo.height);
+    let rect = new Phaser.Geom.Rectangle(0, 0, logo.width, logo.height);
 
     this.load.on('start', function () {
       logo.setVisible(true);
@@ -46,13 +47,13 @@ export default {
 
   preload: function () {
     this.load
-      .image('bomb', require('../assets/bomb.png'))
-      .image('cavern2', require('../assets/cavern2.png'))
-      .image('fire', require('../assets/fire.png'))
-      .image('platform', require('../assets/platform.png'))
-      .spritesheet('coin', require('../assets/coin-16x16x4.png'), { frameWidth: 16, frameHeight: 16 })
-      .spritesheet('dude', require('../assets/dude.png'), { frameWidth: 32, frameHeight: 48 })
-      .spritesheet('gem', require('../assets/gem-blue-16x16x4.png'), { frameWidth: 16, frameHeight: 16 });
+      .image('bomb', assets['bomb'])
+      .image('cavern2', assets['cavern2'])
+      .image('fire', assets['fire'])
+      .image('platform', assets['platform'])
+      .spritesheet('coin', assets['coin-16x16x4'], { frameWidth: 16, frameHeight: 16 })
+      .spritesheet('dude', assets['dude'], { frameWidth: 32, frameHeight: 48 })
+      .spritesheet('gem', assets['gem-blue-16x16x4'], { frameWidth: 16, frameHeight: 16 });
   },
 
   create: function () {

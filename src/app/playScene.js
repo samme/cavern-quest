@@ -1,14 +1,14 @@
 import Phaser from 'phaser';
 
-var bombs;
-var coins;
-var crevasse;
-var cursors;
-var platforms;
-var player;
+let bombs;
+let coins;
+let crevasse;
+let cursors;
+let platforms;
+let player;
 
-var SECOND = 1000;
-var TINT_RED = 0xff0000;
+let SECOND = 1000;
+let TINT_RED = 0xff0000;
 
 export default {
 
@@ -47,7 +47,7 @@ export default {
       defaultKey: 'platform'
     });
 
-    var Between = Phaser.Math.Between;
+    let {Between} = Phaser.Math;
 
     // The ledges
     platforms.create(100 + Between(-50, 50), 256);
@@ -113,7 +113,7 @@ export default {
       return;
     }
 
-    var blocked = player.body.blocked;
+    let {blocked} = player.body;
 
     if (cursors.left.isDown && !blocked.left) {
       player.setVelocityX(-180);
@@ -134,7 +134,7 @@ export default {
   extend: {
 
     addBomb: function (x, y) {
-      var bomb = bombs.get(x, y, 'bomb');
+      let bomb = bombs.get(x, y, 'bomb');
 
       if (!bomb) {
         // At max.
@@ -165,7 +165,7 @@ export default {
     },
 
     dropBomb: function () {
-      var x = Phaser.Math.Between(0, 600);
+      let x = Phaser.Math.Between(0, 600);
 
       if (player.x < 600) x += 600;
 
