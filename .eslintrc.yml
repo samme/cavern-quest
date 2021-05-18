@@ -1,29 +1,14 @@
-extends: 'eslint:recommended'
+extends: semistandard
 env:
   browser: yes
   es6: yes
 parserOptions:
   sourceType: module
 rules:
-  brace-style:
-    - error
-    - 1tbs
-    - allowSingleLine: true
-  indent:
-    - error
-    - 2
-  linebreak-style:
-    - error
-    - unix
   no-var:
     - error
   prefer-const:
     - error
   prefer-destructuring:
     - error
-  quotes:
-    - error
-    - single
-  semi:
-    - error
-    - always
+
