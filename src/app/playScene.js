@@ -146,7 +146,7 @@ export default {
       bomb.setBounce(1);
       bomb.setCollideWorldBounds(true);
       bomb.setMaxVelocity(600);
-      bomb.setVelocity(100 * Phaser.Math.Between(-3, 3), 40);
+      bomb.setVelocity(Phaser.Utils.Array.GetRandom([-180, -90, 0, 90, 180]), 30);
       bomb.setAngularVelocity(360);
     },
 
