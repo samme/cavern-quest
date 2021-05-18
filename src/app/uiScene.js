@@ -6,10 +6,9 @@ export default {
 
   key: 'ui',
 
-  plugins: [ 'InputPlugin' ],
+  plugins: ['InputPlugin'],
 
   create: function () {
-
     scoreText = this.add.text(520, 0, '', {
       fontSize: 24,
       fontFamily: 'sans-serif',
@@ -68,7 +67,7 @@ export default {
       this.scene
         .stop('play')
         .run('menu');
-      
+
       // Don't sleep a scene that hasn't started!
       if (this.scene.isActive('end')) {
         this.scene.sleep('end');
@@ -97,7 +96,7 @@ export default {
     },
 
     toggleZoom: function () {
-      let camera = this.scene.get('play').cameras.main;
+      const camera = this.scene.get('play').cameras.main;
 
       camera.setZoom(camera.zoom === 2 ? 1 : 2);
     }

@@ -12,21 +12,21 @@ export default {
     ]
   },
 
-  plugins: [ 'Loader' ],
+  plugins: ['Loader'],
 
   init: function () {
     this.registry
       .set('highScore', 0)
       .set('score', 0);
 
-    let bg = this.add.image(400, 300, 'logo')
+    const bg = this.add.image(400, 300, 'logo')
       .setAlpha(0.4)
       .setBlendMode(Phaser.BlendModes.LUMINOSITY);
 
-    let logo = this.add.image(bg.x, bg.y, 'logo')
+    const logo = this.add.image(bg.x, bg.y, 'logo')
       .setVisible(false);
 
-    let rect = new Phaser.Geom.Rectangle(0, 0, logo.width, logo.height);
+    const rect = new Phaser.Geom.Rectangle(0, 0, logo.width, logo.height);
 
     this.load.on('start', function () {
       logo.setVisible(true);
@@ -47,12 +47,12 @@ export default {
 
   preload: function () {
     this.load
-      .image('bomb', assets['bomb'])
-      .image('cavern2', assets['cavern2'])
-      .image('fire', assets['fire'])
-      .image('platform', assets['platform'])
+      .image('bomb', assets.bomb)
+      .image('cavern2', assets.cavern2)
+      .image('fire', assets.fire)
+      .image('platform', assets.platform)
       .spritesheet('coin', assets['coin-16x16x4'], { frameWidth: 16, frameHeight: 16 })
-      .spritesheet('dude', assets['dude'], { frameWidth: 32, frameHeight: 48 })
+      .spritesheet('dude', assets.dude, { frameWidth: 32, frameHeight: 48 })
       .spritesheet('gem', assets['gem-blue-16x16x4'], { frameWidth: 16, frameHeight: 16 });
   },
 
@@ -68,4 +68,3 @@ export default {
   }
 
 };
-

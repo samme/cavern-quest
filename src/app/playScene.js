@@ -28,7 +28,7 @@ export default {
     }
   },
 
-  plugins: [ 'Clock', 'InputPlugin' ],
+  plugins: ['Clock', 'InputPlugin'],
 
   init: function () {
     this.registry.set('score', 0);
@@ -52,7 +52,7 @@ export default {
       defaultKey: 'platform'
     });
 
-    const {Between} = Phaser.Math;
+    const { Between } = Phaser.Math;
 
     // The ledges
     platforms.create(100 + Between(-50, 50), 256);
@@ -115,7 +115,7 @@ export default {
       return;
     }
 
-    const {blocked} = player.body;
+    const { blocked } = player.body;
 
     if (cursors.left.isDown && !blocked.left) {
       player.setVelocityX(-180);
@@ -161,7 +161,7 @@ export default {
       player = null;
     },
 
-    destroy: function () {      
+    destroy: function () {
       this.clear();
     },
 

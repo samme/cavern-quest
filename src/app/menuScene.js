@@ -2,7 +2,7 @@ export default {
 
   key: 'menu',
 
-  plugins: [ 'InputPlugin' ],
+  plugins: ['InputPlugin'],
 
   create: function () {
     this.add.sprite(400, 300, 'cavern2');

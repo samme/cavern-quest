@@ -2,7 +2,7 @@ export default {
 
   key: 'end',
 
-  plugins: [ 'InputPlugin' ],
+  plugins: ['InputPlugin'],
 
   create: function () {
     this.add.image(400, 300, 'fire');
