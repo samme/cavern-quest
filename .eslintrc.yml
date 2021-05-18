@@ -17,6 +17,8 @@ rules:
     - unix
   no-var:
     - error
+  prefer-const:
+    - error
   prefer-destructuring:
     - error
   quotes:
