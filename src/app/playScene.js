@@ -7,8 +7,8 @@ let cursors;
 let platforms;
 let player;
 
-let SECOND = 1000;
-let TINT_RED = 0xff0000;
+const SECOND = 1000;
+const TINT_RED = 0xff0000;
 
 export default {
 
