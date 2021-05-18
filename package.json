@@ -18,11 +18,11 @@
   "author": "samme",
   "license": "ISC",
   "dependencies": {
-    "phaser": "3.24.1",
-    "phaser-plugin-scene-watcher": "^3.2.2"
+    "phaser": "3.54.0",
+    "phaser-plugin-scene-watcher": "^5.0.1"
   },
   "devDependencies": {
-    "cssnano": "^4.1.10"
+    "cssnano": "^5.0.2"
   },
   "alias": {
     "phaser": "./node_modules/phaser/src/phaser-arcade-physics.js"
