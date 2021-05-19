@@ -9,6 +9,7 @@ let platforms;
 let player;
 
 const SECOND = 1000;
+const { Between, FloatBetween } = Phaser.Math;
 const { DESTROY, PAUSE, RESUME, SHUTDOWN } = Phaser.Scenes.Events;
 
 export default {
@@ -53,8 +54,6 @@ export default {
       defaultKey: 'platform'
     });
 
-    const { Between } = Phaser.Math;
-
     // The ledges
     platforms.create(100 + Between(-50, 50), 256);
     platforms.create(600 + Between(-50, 50), 400);
@@ -80,7 +79,7 @@ export default {
     });
 
     coins.children.iterate(function (child) {
-      child.setBounceY(Phaser.Math.FloatBetween(0.2, 0.4));
+      child.setBounceY(FloatBetween(0.2, 0.4));
     });
 
     coins.playAnimation('coinSpin');
@@ -147,12 +146,13 @@ export default {
         return;
       }
 
-      bomb.enableBody(true, x, y, true, true);
-      bomb.setBounce(1);
-      bomb.setCollideWorldBounds(true);
-      bomb.setMaxVelocity(600);
-      bomb.setVelocity(Phaser.Utils.Array.GetRandom([-180, -90, 0, 90, 180]), 30);
-      bomb.setAngularVelocity(360);
+      bomb
+        .enableBody(true, x, y, true, true)
+        .setBounce(1)
+        .setCollideWorldBounds(true)
+        .setMaxVelocity(600)
+        .setVelocity(Phaser.Utils.Array.GetRandom([-180, -90, 0, 90, 180]), 30)
+        .setAngularVelocity(360);
     },
 
     clear: function () {
@@ -184,7 +184,7 @@ export default {
     },
 
     dropBomb: function () {
-      let x = Phaser.Math.Between(0, 600);
+      let x = Between(0, 600);
 
       if (player.x < 600) x += 600;
 
