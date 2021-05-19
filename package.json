@@ -22,7 +22,7 @@
     "phaser-plugin-scene-watcher": "^5.0.1"
   },
   "devDependencies": {
-    "cssnano": "^5.0.2",
+    "cssnano": "^4.1.11",
     "eslint": "^7.26.0",
     "eslint-config-semistandard": "^15.0.1"
   },
