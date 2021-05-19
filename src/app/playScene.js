@@ -1,14 +1,16 @@
 import Phaser from 'phaser';
 
-var bombs;
-var cursors;
-var platforms;
-var player;
-var coins;
-var crevasse;
+let bombs;
+let coins;
+let crevasse;
+let cursors;
+let explosion;
+let platforms;
+let player;
 
-var SECOND = 1000;
-var TINT_RED = 0xff0000;
+const SECOND = 1000;
+const { Between, FloatBetween } = Phaser.Math;
+const { DESTROY, PAUSE, RESUME, SHUTDOWN } = Phaser.Scenes.Events;
 
 export default {
 
@@ -27,10 +29,15 @@ export default {
     }
   },
 
-  plugins: [ 'Clock', 'InputPlugin' ],
+  plugins: ['Clock', 'InputPlugin'],
 
   init: function () {
     this.registry.set('score', 0);
+    this.events
+      .on(PAUSE, this.dim, this)
+      .on(RESUME, this.undim, this)
+      .on(DESTROY, this.destroy, this)
+      .once(SHUTDOWN, this.shutdown, this);
   },
 
   create: function () {
@@ -43,10 +50,9 @@ export default {
       .setScrollFactor(0, 0);
 
     platforms = this.physics.add.staticGroup({
+      classType: Phaser.Physics.Arcade.Image,
       defaultKey: 'platform'
     });
-
-    var Between = Phaser.Math.Between;
 
     // The ledges
     platforms.create(100 + Between(-50, 50), 256);
@@ -57,7 +63,8 @@ export default {
     platforms.create(900, 584);
 
     player = this.physics.add.sprite(100 * Between(2, 10), 0, 'dude')
-      .setSize(16, 48)
+      .setSize(16, 32, false)
+      .setOffset(8, 16)
       .setBounce(0.2)
       .setCollideWorldBounds(true);
 
@@ -72,7 +79,7 @@ export default {
     });
 
     coins.children.iterate(function (child) {
-      child.setBounceY(Phaser.Math.FloatBetween(0.2, 0.4));
+      child.setBounceY(FloatBetween(0.2, 0.4));
     });
 
     coins.playAnimation('coinSpin');
@@ -82,6 +89,8 @@ export default {
       defaultKey: 'bomb',
       maxSize: 10
     });
+
+    explosion = this.add.sprite(0, 0, 'explosion').setVisible(false);
 
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(coins, platforms);
@@ -99,10 +108,6 @@ export default {
     });
 
     cursors = this.input.keyboard.createCursorKeys();
-
-    this.events
-      .on('pause', this.dim, this)
-      .on('resume', this.undim, this);
   },
 
   update: function () {
@@ -112,7 +117,7 @@ export default {
       return;
     }
 
-    var blocked = player.body.blocked;
+    const { blocked } = player.body;
 
     if (cursors.left.isDown && !blocked.left) {
       player.setVelocityX(-180);
@@ -133,7 +138,7 @@ export default {
   extend: {
 
     addBomb: function (x, y) {
-      var bomb = bombs.get(x, y, 'bomb');
+      const bomb = bombs.get(x, y, 'bomb');
 
       if (!bomb) {
         // At max.
@@ -141,12 +146,23 @@ export default {
         return;
       }
 
-      bomb.enableBody(true, x, y, true, true);
-      bomb.setBounce(1);
-      bomb.setCollideWorldBounds(true);
-      bomb.setMaxVelocity(600);
-      bomb.setVelocity(100 * Phaser.Math.Between(-3, 3), 40);
-      bomb.setAngularVelocity(360);
+      bomb
+        .enableBody(true, x, y, true, true)
+        .setBounce(1)
+        .setCollideWorldBounds(true)
+        .setMaxVelocity(600)
+        .setVelocity(Phaser.Utils.Array.GetRandom([-180, -90, 0, 90, 180]), 30)
+        .setAngularVelocity(360);
+    },
+
+    clear: function () {
+      bombs = null;
+      coins = null;
+      crevasse = null;
+      cursors = null;
+      explosion = null;
+      platforms = null;
+      player = null;
     },
 
     collectCoin: function (player, coin) {
@@ -159,12 +175,16 @@ export default {
       }
     },
 
+    destroy: function () {
+      this.clear();
+    },
+
     dim: function () {
       this.cameras.main.setAlpha(0.5);
     },
 
     dropBomb: function () {
-      var x = Phaser.Math.Between(0, 600);
+      let x = Between(0, 600);
 
       if (player.x < 600) x += 600;
 
@@ -179,11 +199,12 @@ export default {
 
     hitBomb: function (player, bomb) {
       player.anims.pause();
-      player.setTintFill(TINT_RED);
-      bomb.setTintFill(TINT_RED);
+      player.disableBody(true, true);
+      bomb.disableBody(true, true);
+      explosion.copyPosition(bomb).play('explode');
       this.physics.pause();
       this.cameras.main.flash(0.2 * SECOND, 255, 0, 0);
-      this.time.delayedCall(1 * SECOND, this.gameOver, null, this);
+      this.time.delayedCall(2 * SECOND, this.gameOver, null, this);
     },
 
     lostBomb: function (crevasse, bomb) {
@@ -194,6 +215,15 @@ export default {
       coins.children.iterate(function (coin) {
         coin.enableBody(true, coin.x, 0, true, true);
       });
+    },
+
+    shutdown: function () {
+      this.clear();
+
+      this.events
+        .off(PAUSE, this.dim, this)
+        .off(RESUME, this.undim, this)
+        .off(DESTROY, this.destroy, this);
     },
 
     undim: function () {

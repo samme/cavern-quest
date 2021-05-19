@@ -2,9 +2,11 @@ export default {
 
   key: 'menu',
 
-  plugins: [ 'InputPlugin' ],
+  plugins: ['InputPlugin'],
 
   create: function () {
+    this.input.keyboard.enabled = false;
+
     this.add.sprite(400, 300, 'cavern2');
 
     this.add.image(400, 150, 'gem')

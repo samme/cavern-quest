@@ -13,8 +13,8 @@ export default {
   audio: { noAudio: true },
   title: 'Cavern Quest 💰',
   url: 'https://github.com/samme/cavern-quest',
-  banner: { text: 'white', background: [ '#141B24' ] },
-  scene: [ bootScene, menuScene, playScene, endScene, uiScene ],
+  banner: { text: 'white', background: ['#141B24'] },
+  scene: [bootScene, menuScene, playScene, endScene, uiScene],
   plugins: {
     global: [
       { key: 'SceneWatcherPlugin', plugin: SceneWatcherPlugin, start: true }
