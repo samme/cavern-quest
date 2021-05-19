@@ -160,12 +160,9 @@ export default {
       coins = null;
       crevasse = null;
       cursors = null;
+      explosion = null;
       platforms = null;
       player = null;
-    },
-
-    destroy: function () {
-      this.clear();
     },
 
     collectCoin: function (player, coin) {
@@ -176,6 +173,10 @@ export default {
       if (coins.countActive(true) === 0) {
         this.nextRound();
       }
+    },
+
+    destroy: function () {
+      this.clear();
     },
 
     dim: function () {
