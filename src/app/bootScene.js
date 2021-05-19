@@ -53,7 +53,8 @@ export default {
       .image('platform', assets.platform)
       .spritesheet('coin', assets['coin-16x16x4'], { frameWidth: 16, frameHeight: 16 })
       .spritesheet('dude', assets.dude, { frameWidth: 32, frameHeight: 48 })
-      .spritesheet('gem', assets['gem-blue-16x16x4'], { frameWidth: 16, frameHeight: 16 });
+      .spritesheet('gem', assets['gem-blue-16x16x4'], { frameWidth: 16, frameHeight: 16 })
+      .spritesheet('explosion', assets.explosion, { frameWidth: 64, frameHeight: 64, endFrame: 23 });
   },
 
   create: function () {

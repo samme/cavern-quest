@@ -4,11 +4,11 @@ let bombs;
 let coins;
 let crevasse;
 let cursors;
+let explosion;
 let platforms;
 let player;
 
 const SECOND = 1000;
-const TINT_RED = 0xff0000;
 const { DESTROY, PAUSE, RESUME, SHUTDOWN } = Phaser.Scenes.Events;
 
 export default {
@@ -90,6 +90,8 @@ export default {
       defaultKey: 'bomb',
       maxSize: 10
     });
+
+    explosion = this.add.sprite(0, 0, 'explosion').setVisible(false);
 
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(coins, platforms);
@@ -196,11 +198,12 @@ export default {
 
     hitBomb: function (player, bomb) {
       player.anims.pause();
-      player.setTintFill(TINT_RED);
-      bomb.setTintFill(TINT_RED);
+      player.disableBody(true, true);
+      bomb.disableBody(true, true);
+      explosion.copyPosition(bomb).play('explode');
       this.physics.pause();
       this.cameras.main.flash(0.2 * SECOND, 255, 0, 0);
-      this.time.delayedCall(1 * SECOND, this.gameOver, null, this);
+      this.time.delayedCall(2 * SECOND, this.gameOver, null, this);
     },
 
     lostBomb: function (crevasse, bomb) {
