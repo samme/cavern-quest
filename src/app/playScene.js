@@ -49,6 +49,7 @@ export default {
       .setScrollFactor(0, 0);
 
     platforms = this.physics.add.staticGroup({
+      classType: Phaser.Physics.Arcade.Image,
       defaultKey: 'platform'
     });
 
