@@ -18,7 +18,7 @@
   "author": "samme",
   "license": "ISC",
   "dependencies": {
-    "phaser": "3.54.0",
+    "phaser": "^3.55.0",
     "phaser-plugin-scene-watcher": "^5.0.1"
   },
   "devDependencies": {
