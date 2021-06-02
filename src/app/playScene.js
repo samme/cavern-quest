@@ -70,16 +70,14 @@ export default {
 
     this.cameras.main.startFollow(player);
 
-    // Some coins to collect
     coins = this.physics.add.group({
       key: 'coin',
       frameQuantity: 18,
       setXY: { x: 12, y: 0, stepX: 70 },
-      collideWorldBounds: true
-    });
-
-    coins.children.iterate(function (child) {
-      child.setBounceY(FloatBetween(0.2, 0.4));
+      collideWorldBounds: true,
+      createCallback: function (coin) {
+        coin.setBounceY(FloatBetween(0.2, 0.4));
+      }
     });
 
     coins.playAnimation('coinSpin');
@@ -87,7 +85,13 @@ export default {
     bombs = this.physics.add.group({
       classType: Phaser.Physics.Arcade.Image,
       defaultKey: 'bomb',
-      maxSize: 10
+      maxSize: 10,
+      angularVelocity: 360,
+      bounceX: 1,
+      bounceY: 1,
+      collideWorldBounds: true,
+      maxVelocityX: 600,
+      maxVelocityY: 600
     });
 
     explosion = this.add.sprite(0, 0, 'explosion').setVisible(false);
@@ -148,11 +152,7 @@ export default {
 
       bomb
         .enableBody(true, x, y, true, true)
-        .setBounce(1)
-        .setCollideWorldBounds(true)
-        .setMaxVelocity(600)
-        .setVelocity(Phaser.Utils.Array.GetRandom([-180, -90, 0, 90, 180]), 30)
-        .setAngularVelocity(360);
+        .setVelocity(Phaser.Utils.Array.GetRandom([-180, -90, 0, 90, 180]), 30);
     },
 
     clear: function () {
