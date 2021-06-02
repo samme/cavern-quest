@@ -19,7 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "phaser": "3.55.2",
-    "phaser-plugin-scene-watcher": "^5.0.1"
+    "phaser-plugin-scene-watcher": "^6.0.0"
   },
   "devDependencies": {
     "cssnano": "^4.1.11",
