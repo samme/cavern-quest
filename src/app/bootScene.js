@@ -28,16 +28,11 @@ export default {
 
     this.load.on('start', function () {
       logo.setVisible(true);
-    }, this);
+    });
 
     this.load.on('progress', function (progress) {
-      logo.setCrop(
-        0,
-        0,
-        progress * logo.width,
-        logo.height
-      );
-    }, this);
+      logo.setCrop(0, 0, progress * logo.width, logo.height);
+    });
 
     // Log scene events to console
     this.sys.game.plugins.get('SceneWatcherPlugin').watchAll();
