@@ -26,18 +26,16 @@ export default {
     const logo = this.add.image(bg.x, bg.y, 'logo')
       .setVisible(false);
 
-    const rect = new Phaser.Geom.Rectangle(0, 0, logo.width, logo.height);
-
     this.load.on('start', function () {
       logo.setVisible(true);
     }, this);
 
     this.load.on('progress', function (progress) {
       logo.setCrop(
-        rect.x,
-        rect.y,
-        progress * rect.width,
-        rect.height
+        0,
+        0,
+        progress * logo.width,
+        logo.height
       );
     }, this);
 
@@ -59,9 +57,6 @@ export default {
 
   create: function () {
     this.anims.fromJSON(animations);
-  },
-
-  update: function () {
     this.scene
       .launch('menu')
       .launch('ui')
