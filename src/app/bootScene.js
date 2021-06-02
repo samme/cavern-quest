@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import animations from './animations';
-import assets from '../assets/*.png';
+import assets from './assets';
+import pack from './pack';
 
 export default {
 
@@ -39,15 +40,7 @@ export default {
   },
 
   preload: function () {
-    this.load
-      .image('bomb', assets.bomb)
-      .image('cavern2', assets.cavern2)
-      .image('fire', assets.fire)
-      .image('platform', assets.platform)
-      .spritesheet('coin', assets['coin-16x16x4'], { frameWidth: 16, frameHeight: 16 })
-      .spritesheet('dude', assets.dude, { frameWidth: 32, frameHeight: 48 })
-      .spritesheet('gem', assets['gem-blue-16x16x4'], { frameWidth: 16, frameHeight: 16 })
-      .spritesheet('explosion', assets.explosion, { frameWidth: 64, frameHeight: 64, endFrame: 23 });
+    this.load.pack('pack', pack);
   },
 
   create: function () {
