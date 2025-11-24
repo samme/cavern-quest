@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "cssnano": "^6.0.1",
-    "eslint": "^7.26.0",
+    "eslint": "^9.39.1",
     "eslint-config-semistandard": "^15.0.1"
   },
   "alias": {
